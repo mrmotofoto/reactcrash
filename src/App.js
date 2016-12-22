@@ -1,18 +1,39 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Projects from './components/Projects';
+import AddProject from './components/AddProject';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      projects: []
+    }
+  }//END CONSTRUCTOR
+
+  componentWillMount() {
+    this.setState({projects: [
+      {
+        title: "Business",
+        category: "Web"
+      },
+      {
+        title: "Shopping",
+        category: "Ecom"
+      },
+      {
+        title: "Video",
+        category: "Edit Videos"
+      }
+    ]});
+  } //componentWillMount
+
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1>Project Manager</h1>
+        <AddProject />
+        <Projects projects={this.state.projects}/>
       </div>
     );
   }
